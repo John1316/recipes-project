@@ -1,0 +1,20 @@
+<a
+  style="cursor: pointer;"
+  class="card recipe_card text-dark"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  >
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-md-9">
+        <h4 class="list-group-item-heading mb-0">{{recipe.name}}</h4>
+        <p class="list-group-item-text mb-0">{{recipe.description}}</p>
+
+      </div>
+      <div class="col-md-3">
+        <img [src]="recipe.imagePath" class="w-100" alt="">
+
+      </div>
+    </div>
+  </div>
+</a>

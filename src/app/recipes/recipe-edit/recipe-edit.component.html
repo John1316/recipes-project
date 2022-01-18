@@ -1,0 +1,64 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="!recipeForm.valid"
+      >Save</button>
+      <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+    </div>
+    <div class="col-lg-12" >
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" formControlName='name' class="form-control" type="text" name="">
+      </div>
+    </div>
+    <div class="col-lg-12" >
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input id="image" formControlName='imagePath'  class="form-control" type="text" name="image" #imagePath>
+      </div>
+      </div>
+      <div class="col-lg-12" >
+        <img [src]="imagePath.value" class="w-100" alt="">
+      </div>
+      <div class="col-lg-12" >
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName='description'  class="form-control" name="description" rows="6"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-12" formArrayName="ingridents">
+
+      <div
+        class="row align-items-end mb-2"
+        *ngFor="let ingrident of allIngridents?.controls; let i = index" [formGroupName]="i"
+        >
+        <div class="col-lg-8">
+          <div class="form-group mb-0">
+            <input id="name" class="form-control" type="text" formControlName='name' name="">
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group mb-0">
+            <input id="name" class="form-control" type="number" formControlName='amount' name="">
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <button type="button" (click)="onDeleteIngrident(i)" class="btn btn-danger">X</button>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="col-12">
+      <button type="button" class="btn btn-success" (click)="onAddIngrident()">Add Ingrident</button>
+    </div>
+  </div>
+</form>

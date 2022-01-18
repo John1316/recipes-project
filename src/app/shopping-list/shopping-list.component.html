@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <app-shopping-edit></app-shopping-edit>
+    <!-- <router-outlet></router-outlet> -->
+    <hr>
+    <div class="card">
+      <div class="card-header">
+        Ingridents
+      </div>
+      <ul class="list-group list-group-flush">
+        <a
+          class="list-group-item text-dark cursor-pointer"
+          *ngFor="let ingrident of ingridents; let id = index"
+          (click)="onEditList(id)"
+          >
+          {{ingrident.name}} ({{ingrident.amount}})
+        </a>
+
+      </ul>
+    </div>
+    <!-- <ul href="" class="list-group">
+      <a
+      class="list-group-item cursor-pointer"
+      *ngFor="let ingrident of ingridents"
+      >
+      {{ingrident.name}} ({{ingrident.amount}})
+    </a>
+    </ul> -->
+  </div>
+
+</div>
