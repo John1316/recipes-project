@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
 import { RecipeService } from './recipe.service';
-
+import { map , tap } from "rxjs/operators";
 @Injectable({
   providedIn: 'root',
 
@@ -15,11 +15,22 @@ export class DataStorageService {
     ) { }
     storeRecipe(){
       const recipes = this._RecipeService.getRecipes()
-      return this._HttpClient.put(`https://project-max-cycle-default-rtdb.firebaseio.com/recipes.json`, recipes).subscribe((resposne) => {
+      return this._HttpClient.put(`https://auth-max-505bd-default-rtdb.firebaseio.com/recipes.json`, recipes).subscribe((resposne) => {
         console.log(resposne);
       })
     }
     fetchRecipes(){
-      return this._HttpClient.get<Recipe[]>(`https://project-max-cycle-default-rtdb.firebaseio.com/recipes.json`)
-    }
+      return this._HttpClient.get<Recipe[]>(`https://auth-max-505bd-default-rtdb.firebaseio.com/recipes.json`)
+      .pipe(map(
+        recipes => {
+          return recipes.map(recipe => {
+            return {
+              ...recipe,
+               ingridents: recipe.ingridents ? recipe.ingridents : []
+            };
+          })
+        }),tap(recipes => {
+           this._RecipeService.setRecipes(recipes)
+        })
+      )}
 }

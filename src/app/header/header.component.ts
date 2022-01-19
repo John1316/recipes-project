@@ -20,9 +20,7 @@ export class HeaderComponent implements OnInit {
       this._DataStorageService.storeRecipe()
     }
     onFetchData(){
-      this._DataStorageService.fetchRecipes().subscribe((getData) => {
-        this._RecipeService.setRecipes(getData)
-      })
+      this._DataStorageService.fetchRecipes().subscribe()
     }
   constructor(private _DataStorageService:DataStorageService ,
     private _RecipeService:RecipeService
