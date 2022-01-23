@@ -5,7 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cursor-pointer{
   cursor: pointer;
 }
-a{
+.navbar a{
   cursor: pointer;
 }
 .dropdown.show .dropdown-menu
